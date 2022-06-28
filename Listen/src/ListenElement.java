@@ -15,6 +15,19 @@ public class ListenElement {
 		}
 	}
 
+	public int get() {
+		return inhalt;
+	}
+	
+	public void firstLast() {
+		if (next == null) {
+			System.out.print(inhalt);
+		} else {
+			next.firstLast();
+		}
+	
+	}
+	
 	public String toString() {
 		if (next == null) {
 			return "" + inhalt;
@@ -22,6 +35,7 @@ public class ListenElement {
 			return ""+inhalt+" "+next.toString();
 		}
 	}
+	
 	
 	public int count() {
 		if(next == null) {
