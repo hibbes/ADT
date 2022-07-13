@@ -1,8 +1,15 @@
+import java.util.Arrays;
 
 public class Test {
 
 	public static void main(String[] args) {
-		Liste liste = new Liste(3);
+		QuickSort q = new QuickSort();
+	    int[] zuSortieren = {3,6,1,9,7,1,6};
+	    System.out.println(Arrays.toString(zuSortieren));
+	    q.quicksort(zuSortieren,  0, 6);
+	    System.out.println(Arrays.toString(zuSortieren));
+		
+	/*	Liste liste = new Liste(3);
 		liste.add(5);
 		liste.add(43);
 		liste.add(9);
@@ -25,7 +32,7 @@ public class Test {
 		
 		liste.remove(7);
 		System.out.println(liste);
-		
-	}
+		*/
+	} 
 
-}
+} 
