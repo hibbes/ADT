@@ -16,7 +16,7 @@ public class QuickSort {
 			while (liste[positionRechts] > pivot) {
 				positionRechts--;
 			}
-
+//
 			if (positionLinks <= positionRechts) {
 				int tmp = liste[positionLinks];
 				liste[positionLinks] = liste[positionRechts];

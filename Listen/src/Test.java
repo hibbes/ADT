@@ -8,7 +8,7 @@ public class Test {
 	    System.out.println(Arrays.toString(zuSortieren));
 	    q.quicksort(zuSortieren,  0, 6);
 	    System.out.println(Arrays.toString(zuSortieren));
-		
+		//
 	/*	Liste liste = new Liste(3);
 		liste.add(5);
 		liste.add(43);
