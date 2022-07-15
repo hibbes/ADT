@@ -5,10 +5,7 @@ public class SortAlgorithms {
 
 	public static void main(String[] args) {
 
-		ausgabe(selectionSort(array)); // Ausgabe mir aufgerufen und das Ergebnis von Funktion "selectionSort"
-										// übergeben.
-		ausgabe(bubbleSort(array));
-
+		
 	}
 
 	public static int[] bubbleSort(int[] array) {
