@@ -65,24 +65,14 @@ public class SortAlgorithms {
      *   <li>Worst case: O(n²)</li>
      * </ul>
      *
-     * <h3>⚠ Bug:</h3>
-     * {@code length--} steht innerhalb der for-Schleife statt danach.
-     * Dadurch wird die Schranke bei jedem Einzelvergleich verkleinert
-     * und die Sortierung bricht zu früh ab.
+     * <h3>Historischer Bug:</h3>
+     * <p>Eine frühere Version hatte {@code length--} <b>innerhalb</b> der
+     * inneren for-Schleife stehen. Dadurch wurde die Schranke bei jedem
+     * Einzelvergleich verkleinert, sodass die Sortierung zu früh abbrach
+     * und das Array nur teilweise sortiert wurde.</p>
      *
-     * <h4>Korrekte Version:</h4>
-     * <pre>
-     *   while (length > 1) {
-     *       for (int i = 0; i < length; i++) {   // i < length, kein <=
-     *           if (sort[i] > sort[i + 1]) {
-     *               tmp = sort[i];
-     *               sort[i] = sort[i + 1];
-     *               sort[i + 1] = tmp;
-     *           }
-     *       }
-     *       length--;  // erst HIER: ganzen Durchlauf abwarten
-     *   }
-     * </pre>
+     * <p>Die korrekte Platzierung ({@code length--} nach der for-Schleife)
+     * ist in der aktuellen Fassung umgesetzt – so wie es sein soll.</p>
      *
      * @param array Das zu sortierende Array (wird in-place verändert!)
      * @return Dasselbe Array-Objekt, aufsteigend sortiert
@@ -91,20 +81,19 @@ public class SortAlgorithms {
 
         int[] sort = array;               // Achtung: Referenz, keine Kopie!
         int length = sort.length - 1;     // obere Grenze des unsortierten Bereichs
-        int tmp = 0;                      // Hilfsvariable für den Tausch
+        int tmp;                          // Hilfsvariable für den Tausch
 
-        while (length > 1) {
-            // BUG: length-- steht innerhalb der Schleife – zu früher Abbruch!
-            // Korrekt wäre: length-- nach der for-Schleife
-            for (int i = 0; i <= length; i++) {
+        while (length > 0) {
+            for (int i = 0; i < length; i++) {
                 if (sort[i] > sort[i + 1]) {
-                    // Tausch: sort[i] und sort[i+1] vertauschen
-                    tmp = sort[i];
-                    sort[i] = sort[i + 1];
+                    // Nachbarn vertauschen: der größere Wert „wandert" nach rechts
+                    tmp         = sort[i];
+                    sort[i]     = sort[i + 1];
                     sort[i + 1] = tmp;
                 }
-                length--;  // BUG: hier falsch platziert
             }
+            length--;   // nach einem vollständigen Durchlauf ist das größte
+                        // Element am Ende → obere Grenze schrumpft um 1
         }
         return sort;
     }
